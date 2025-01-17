@@ -62,6 +62,7 @@ function moveTrain(board, mov) {
 
   // Sumamos los movimientos para saber la nueva posición y que hay ahí
   if (mov === 'U') {
+    
     rowObjetivo = rowLocomotora - 1;
     columnaObjetivo = columnLocomotora;
   } else if (mov === 'D') {

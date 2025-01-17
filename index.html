@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body></body>
+	<script>
+		function moveTrain(board, mov) {
+			
+			let resultado = "";
+			let rowObjetivo = 0;
+			let columnaObjetivo = 0;
+
+			// Encuentra la posición row de la locomotora en el board
+			let rowLocomotora = board.findIndex((e) => e.includes("@"));
+
+			// Encuentra la posición column de la locomotora en el board
+			let columnLocomotora = board[rowLocomotora].indexOf("@");
+
+			// Sumamos los movimientos para saber la nueva posición y que hay ahí
+			if (mov === "U") {
+				rowObjetivo = rowLocomotora - 1;
+				columnaObjetivo = columnLocomotora;
+			} else if (mov === "D") {
+				rowObjetivo = rowLocomotora + 1;
+				columnaObjetivo = columnLocomotora;
+			} else if (mov === "L") {
+				rowObjetivo = rowLocomotora;
+				columnaObjetivo = columnLocomotora - 1;
+			} else if (mov === "R") {
+				rowObjetivo = rowLocomotora;
+				columnaObjetivo = columnLocomotora + 1;
+			}
+
+			// Revisamos que no se salga del board
+			if (
+				rowObjetivo < 0 ||
+				rowObjetivo >= board.length ||
+				columnaObjetivo < 0 ||
+				columnaObjetivo >= board[rowLocomotora].length
+			) {
+				resultado = "crash";
+				return resultado;
+			}
+
+			// Revisamos que hay en la posición objetivo
+			let objetivo = board[rowObjetivo][columnaObjetivo];
+
+			if (objetivo === "o") {
+				resultado = "crash";
+			} else if (objetivo === "*") {
+				resultado = "eat";
+			} else if (objetivo === "·") {
+				resultado = "none";
+			}
+
+			return resultado;
+		}
+	</script>
+</html>
