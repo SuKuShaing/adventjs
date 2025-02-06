@@ -22,7 +22,7 @@ decodeFilename('42_chimney_dimensions.pdf.hack2023')
 decodeFilename('987654321_elf-roster.csv.tempfile')
 // ➞ "elf-roster.csv"
 
-Añadí un texto que voy a borrar
+F
 
 */
 
