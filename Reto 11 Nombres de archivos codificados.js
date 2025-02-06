@@ -22,11 +22,23 @@ decodeFilename('42_chimney_dimensions.pdf.hack2023')
 decodeFilename('987654321_elf-roster.csv.tempfile')
 // ➞ "elf-roster.csv"
 
-F
-
 */
 
 function decodeFilename(filename) {
-	// Code here
-	return "";
+	// utilizando expresiones regulares para encontrar el nombre del archivo
+	const regex = /\d+_(.+)\.\w+\./;
+	// utilizando regex para encontrar la extensión del archivo que se encuentre entre puntos .extensión.
+	const regex2 = /\.\w+\./;
+	// uniendo el nombre del archivo y la extensión
+	return filename.match(regex)[1] + "." + filename.match(regex2)[0].slice(1, -1);
 }
+
+
+console.log(decodeFilename('2023122512345678_sleighDesign.png.grinchwa'));
+// ➞ "sleighDesign.png"
+
+console.log(decodeFilename('42_chimney_dimensions.pdf.hack2023'));
+// ➞ "chimney_dimensions.pdf"
+
+console.log(decodeFilename('987654321_elf-roster.csv.tempfile'));
+// ➞ "elf-roster.csv"
