@@ -54,12 +54,21 @@ function findInAgenda(agenda, phone) {
     });
 
     // Filtrar el array de objetos para encontrar el phone
-    // const nombres = arrayOrdenado.filter((objeto) => objeto.telefono.includes(phone));
+    const filtrado = arrayOrdenado.filter((objeto) => objeto.telefono.includes(phone));
 
+    // console.log(arrayOrdenado);
+    console.log('---'.repeat(20));
+    console.log(filtrado);
+    console.log('---'.repeat(20));
 
-    // console.log(nombres);
-    // console.log(agendaComoArray);
-    console.log(arrayOrdenado);
+    // Solo devuelve el valor si hay un solo resultado
+    if (filtrado.length === 1) {
+        console.log({name: filtrado[0].nombre, address: filtrado[0].direccion});
+        return {name: filtrado[0].nombre, address: filtrado[0].direccion};
+    } else {
+        console.log(null);
+        return null;
+    }
 }
 
 
@@ -71,13 +80,13 @@ Plaza Mayor 45 Madrid 28013 <Maria Gomez> +34-600-987-654
 findInAgenda(agenda, '34-600-123-456')
 // { name: "Juan Perez", address: "Calle Gran Via 12" }
 
-// findInAgenda(agenda, '600-987')
+findInAgenda(agenda, '600-987')
 // { name: "Maria Gomez", address: "Plaza Mayor 45 Madrid 28013" }
 
-// findInAgenda(agenda, '111')
+findInAgenda(agenda, '111')
 // null
 // Explicación: No hay resultados
 
-// findInAgenda(agenda, '1')
+findInAgenda(agenda, '1')
 // null
 // Explicación: Demasiados resultados
