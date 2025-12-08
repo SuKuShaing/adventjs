@@ -50,4 +50,3 @@ const gifts3 = []
 const good3 = filterGifts(gifts3)
 console.log(good3)
 // []
-
