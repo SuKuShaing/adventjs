@@ -59,10 +59,10 @@ Si algún regalo no tiene camino posible, el resultado total es -1.
  * @param {string[][]} map - The town map.
  * @returns {number} - Minimum steps to deliver all gifts.
  */
-function minStepsToDeliver(map) {
+export function minStepsToDeliver(map: string[][]): number {
     // 1 Encontrar las coordenadas de la Gs y de Santa (s)
-    const coordenadasG = [];
-    const coordenadasSanta = [];
+    const coordenadasG: number[][] = [];
+    const coordenadasSanta: number[] = [];
 
     for (let filas = 0; filas < map.length; filas++) {
         for (let columnas = 0; columnas < map[0].length; columnas++) {
@@ -80,7 +80,7 @@ function minStepsToDeliver(map) {
 
     // 3 inundar el mapa hasta la primera G, guardar el número de pasos y después repetir para la siguiente G
     // for para cada G, ejecuta un while que inunde el tablero y un if que verifique sí llegó, sí llegó y es un número ok, sí llegó y es una letra, es porque no se puede llegar a él
-    const copiaDelMapa = [...map];
+    const copiaDelMapa: (string | number)[][] = [...map];
     let mapaPrevio = [...map].flat().join("");
 
     for (const coordUnaG of coordenadasG) {
@@ -146,12 +146,14 @@ function minStepsToDeliver(map) {
         console.log(-1);
         return -1;
     } else {
-        console.log(valoresDeG.reduce((acc, valor) => acc + valor, 0));
-        return valoresDeG.reduce((acc, valor) => acc + valor, 0);
+        console.log(
+            (valoresDeG as number[]).reduce((acc, valor) => acc + valor, 0)
+        );
+        return (valoresDeG as number[]).reduce((acc, valor) => acc + valor, 0);
     }
 
-    function encontrarElMenor(...rest) {
-        const numeros = [];
+    function encontrarElMenor(...rest: (string | number)[]) {
+        const numeros: number[] = [];
         for (const item of rest) {
             if (typeof item === "number") {
                 numeros.push(item);
