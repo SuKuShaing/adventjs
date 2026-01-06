@@ -1,0 +1,183 @@
+/*
+En el taller de Santa, los elfos están guardando regalos 🎁 en un almacén vertical. Los regalos se dejan caer uno a uno por una columna y se van apilando.
+
+El almacén es una matriz con # regalos y . espacios vacíos. Debes crear una función dropGifts que reciba el estado del almacén y un array con las columnas donde se dejan caer los regalos.
+
+Reglas de la caída:
+
+El regalo cae por la columna indicada desde arriba.
+Se coloca en la celda vacía (.) más baja de esa columna.
+Si la columna está llena, el regalo se ignora.
+
+
+dropGifts(
+    [
+        [".", ".", "."],
+        [".", "#", "."],
+        ["#", "#", "."],
+    ],
+    [0]
+);
+/*
+[
+    ['.', '.', '.'],
+    ['#', '#', '.'],
+    ['#', '#', '.']
+]
+
+
+dropGifts(
+    [
+        [".", ".", "."],
+        ["#", "#", "."],
+        ["#", "#", "#"],
+    ],
+    [0, 2]
+);
+/*
+[
+    ['#', '.', '.'],
+    ['#', '#', '#'],
+    ['#', '#', '#']
+]
+
+
+dropGifts(
+    [
+        [".", ".", "."],
+        [".", ".", "."],
+        [".", ".", "."],
+    ],
+    [0, 1, 2]
+);
+/*
+[
+    ['.', '.', '.'],
+    ['.', '.', '.'],
+    ['#', '#', '#']
+]
+
+
+dropGifts([["#", "#"][("#", "#")]], [0, 0]);
+/*
+[
+    ['#', '#']
+    ['#', '#']
+]
+*/
+
+/**
+ * @param {string[][]} warehouse
+ * @param {number[]} drops
+ * @returns {string[][]}
+ */
+function dropGifts(warehouse, drops) {
+    const result = warehouse.map((row) => [...row]);
+
+    for (const col of drops) {
+        for (let row = result.length - 1; row >= 0; row--) {
+            if (result[row][col] === ".") {
+                result[row][col] = "#";
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
+// Verification
+console.log("Test Case 1:");
+console.log(
+    dropGifts(
+        [
+            [".", ".", "."],
+            [".", "#", "."],
+            ["#", "#", "."],
+        ],
+        [0]
+    )
+);
+
+console.log("\nTest Case 2:");
+console.log(
+    dropGifts(
+        [
+            [".", ".", "."],
+            ["#", "#", "."],
+            ["#", "#", "#"],
+        ],
+        [0, 2]
+    )
+);
+
+console.log("\nTest Case 3:");
+console.log(
+    dropGifts(
+        [
+            [".", ".", "."],
+            [".", ".", "."],
+            [".", ".", "."],
+        ],
+        [0, 1, 2]
+    )
+);
+
+console.log("\nTest Case 4 (Full Column):");
+console.log(
+    dropGifts(
+        [
+            ["#", "#"],
+            ["#", "#"],
+        ],
+        [0, 0]
+    )
+);
+
+// End of implementation.
+
+dropGifts(
+    [
+        [".", ".", "."],
+        ["#", "#", "."],
+        ["#", "#", "#"],
+    ],
+    [0, 2]
+);
+/*
+[
+    ['#', '.', '.'],
+    ['#', '#', '#'],
+    ['#', '#', '#']
+]
+*/
+
+dropGifts(
+    [
+        [".", ".", "."],
+        [".", ".", "."],
+        [".", ".", "."],
+    ],
+    [0, 1, 2]
+);
+/*
+[
+    ['.', '.', '.'],
+    ['.', '.', '.'],
+    ['#', '#', '#']
+]
+*/
+
+dropGifts(
+    [
+        ["#", "#"],
+        ["#", "#"],
+    ],
+    [0, 0]
+);
+/*
+[
+    ['#', '#']
+    ['#', '#']
+]
+  */
